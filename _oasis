@@ -1,0 +1,17 @@
+OASISFormat:   0.4
+Name:          signalfd
+Version:       0.0.1
+Synopsis:      signalfd
+Authors:       XXX
+License:       BSD-2-clause
+Plugins:       META (0.4), DevFiles (0.4)
+BuildTools:    ocamlbuild
+OCamlVersion:  >= 4.02.0
+
+Library "signalfd"
+  Path:            src/
+  Modules:         Signal_fd
+  InternalModules: Sigset
+  BuildDepends:    unix, ocplib-endian
+  CSources:        native/common.h, native/signals.c, native/sigset.c
+  CCOpt:           -O3

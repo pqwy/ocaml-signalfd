@@ -1,0 +1,12 @@
+# OASIS_START
+# DO NOT EDIT (digest: 54ef65cda64daa00ef90a5fdf040a962)
+version = "0.0.1"
+description = "signalfd"
+requires = "unix ocplib-endian"
+archive(byte) = "signalfd.cma"
+archive(byte, plugin) = "signalfd.cma"
+archive(native) = "signalfd.cmxa"
+archive(native, plugin) = "signalfd.cmxs"
+exists_if = "signalfd.cma"
+# OASIS_STOP
+
