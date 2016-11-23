@@ -1,3 +1,6 @@
+/* Copyright (c) 2015-2016 David Kaloper Meršinjak. All rights reserved.
+   See LICENSE.md. */
+
 #include "common.h"
 
 

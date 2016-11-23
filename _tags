@@ -1,29 +1,11 @@
-# OASIS_START
-# DO NOT EDIT (digest: 1adc7657f9cf43ad1c941e9dca005b71)
-# Ignore VCS directories, you can use the same kind of rule outside
-# OASIS_START/STOP if you want to exclude directories that contains
-# useless stuff for the build process
-true: annot, bin_annot
-<**/.svn>: -traverse
-<**/.svn>: not_hygienic
-".bzr": -traverse
-".bzr": not_hygienic
-".hg": -traverse
-".hg": not_hygienic
-".git": -traverse
-".git": not_hygienic
-"_darcs": -traverse
-"_darcs": not_hygienic
-# Library signalfd
-"src/signalfd.cmxs": use_signalfd
-<src/*.ml{,i,y}>: oasis_library_signalfd_ccopt
-"src/native/signals.c": oasis_library_signalfd_ccopt
-"src/native/sigset.c": oasis_library_signalfd_ccopt
-<src/signalfd.{cma,cmxa}>: use_libsignalfd_stubs
-<src/*.ml{,i,y}>: package(ocplib-endian)
-<src/*.ml{,i,y}>: package(unix)
-"src/native/signals.c": package(ocplib-endian)
-"src/native/signals.c": package(unix)
-"src/native/sigset.c": package(ocplib-endian)
-"src/native/sigset.c": package(unix)
-# OASIS_STOP
+true: bin_annot, safe_string
+true: color(always), warn(A-4-33-40-41-42-43-34-44-48)
+true: package(bytes)
+
+<src>: include
+<src/*.ml{,i}>: package(ocplib-endian)
+<src/*.cm{,x}a>: link_stubs(src/libsignalfd_stubs)
+<unix/native/*.c>: ccopt(-O3 -Wall -Wextra)
+
+<test>: include
+<tests/*>: use_signalfd

@@ -1,0 +1,7 @@
+description = "HERE BE DRAGONS"
+version = "%%VERSION_NUM%%"
+requires = "ocplib-endian"
+archive(byte) = "signalfd.cma"
+archive(native) = "signalfd.cmxa"
+plugin(byte) = "signalfd.cma"
+plugin(native) = "signalfd.cmxs"

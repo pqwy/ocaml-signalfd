@@ -1,11 +1,12 @@
-rondom
-
 _build
-setup.data
-setup.log
-
+*.install
 *.native
 *.byte
-*.docdir
+
+tmp
+*~
+\.\#*
+\#*#
 
 gmon.out
+rondom

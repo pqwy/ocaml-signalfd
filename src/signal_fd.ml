@@ -1,3 +1,5 @@
+(* Copyright (c) 2015-2016 David Kaloper Meršinjak. All rights reserved.
+   See LICENSE.md. *)
 
 let sigrtmin = Sigset.sigrtmin ()
 let sigrtmax = Sigset.sigrtmax ()
@@ -41,14 +43,14 @@ module Siginfo_t = struct
 
   module Decode = struct
 
-    type t = { buf : string ; mutable off : int }
+    type t = { buf : bytes ; mutable off : int }
 
     let create ?(off=0) buf = { off; buf }
 
-    let i32 ({ off } as t) =
+    let i32 ({ off; _ } as t) =
       t.off <- off + 4 ; NE.get_int32 t.buf off
 
-    let i64 ({ off } as t) =
+    let i64 ({ off; _ } as t) =
       t.off <- off + 8 ; NE.get_int64 t.buf off
 
     let i32n t = i32 t |> Int32.to_int
@@ -74,8 +76,8 @@ module Siginfo_t = struct
     and stime   = i64 d
     and addr    = i64 d
     in {
-      signo; code; pid; uid; fd; tid; band; overrun 
-    ; trapno; status; int; ptr; utime; stime; addr 
+      signo; code; pid; uid; fd; tid; band; overrun
+    ; trapno; status; int; ptr; utime; stime; addr
     }
 
   let i32 buf i = NE.get_int32 buf i |> Int32.to_int
